@@ -7,7 +7,7 @@
 <h4  style="font-weight: normal; text-align: justify">Започнат: Ноември 2021</h4>
 </div>
 <div style="float:left; width: 35%;">
-<img src="https://develop.finki.ukim.mk/projects/weDiscussMovies/raw-attachment/wiki/WikiStart/logo-max.jpg" style="float:right; height: auto; width: 90%;">
+<img src="/img/logo.png" style="float:right; height: auto; width: 90%;">
 </div><br><br><br><br><br><br><br><br>
 <h2 style="padding-bottom: 8px; border-bottom: 2px solid red; color: red">Краток опис на проектот</h2>
 <p style="text-align: justify">
