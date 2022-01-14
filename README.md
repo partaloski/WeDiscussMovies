@@ -3,8 +3,8 @@
 <div style="float: left; width: 60%;">
 
 <img src="/img/logo.png" style="display: block; float:left; height: auto; width: 30%;" align="right">
-<h4 style="display: block; font-weight: normal; text-align: justify; float: right">Предмет: Бази на податоци 2021/2022/Зимски</h2>
-<h4 style="display: block; font-weight: normal; text-align: justify; float: right">Под менторство на вонр. проф. д-р Вангел Ајановски и демонстр. м-р Ненад Анчев</h4>
+<h4 style="display: block; font-weight: normal; text-align: justify; float: right">Предмет: Бази на податоци 2021/2022/Зимски</h2><br>
+<h4 style="display: block; font-weight: normal; text-align: justify; float: right">Под менторство на вонр. проф. д-р Вангел Ајановски и демонстр. м-р Ненад Анчев</h4><br>
 <h4 style="display: block; font-weight: normal; text-align: justify; float: right">Започнат: Ноември 2021</h4><br><br>
 <h2 style="padding-bottom: 8px; border-bottom: 2px solid red; color: red">Краток опис на проектот</h2>
 <p style="text-align: justify">
