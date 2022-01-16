@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table (name="discussions")
 public class Discussion {
     @Id
     @GeneratedValue
@@ -34,8 +35,33 @@ public class Discussion {
     @Column(name = "date", nullable = false)
     private Date date;
 
+    @Column(name = "type", nullable = false)
+    private DiscussionType type;
     @OneToMany
     private List<Reply> replies;
+
+    public Discussion() {
+    }
+
+    public Discussion(String title, String text, User user, Movie movie, Date valueOf) {
+        this.title = title;
+        this.text = text;
+        this.user = user;
+        this.date = valueOf;
+        this.movie = movie;
+        this.type = DiscussionType.M;
+    }
+
+    public Discussion(String title, String text, User user, Person person, Date valueOf) {
+        this.title = title;
+        this.text = text;
+        this.user = user;
+        this.date = valueOf;
+        this.person = person;
+        this.type = DiscussionType.P;
+    }
+
+
 }
 
 

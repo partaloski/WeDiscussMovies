@@ -27,6 +27,10 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findPersonByPerson_idAndPersonType(id, PersonType.A);
     }
 
+    @Override
+    public Optional<Person> findById(Integer person_id) {
+        return personRepository.findById(person_id);
+    }
 
     @Override
     public Optional<Person> findDirectorById(Integer id) {
@@ -36,5 +40,33 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> findAllActors() {
         return personRepository.findAllByPersonType(PersonType.A);
+    }
+
+    @Override
+    public boolean save(Person person) {
+        Person p = personRepository.save(person);
+        if(p != null)
+            return true;
+        return false;
+    }
+
+    @Override
+    public List<Person> findActorsByNameLike(String name) {
+        return personRepository.findAllByPersonTypeAndNameLike(PersonType.A, name);
+    }
+
+    @Override
+    public List<Person> findActorsBySurnameLike(String surname) {
+        return personRepository.findAllByPersonTypeAndSurnameLike(PersonType.A, surname);
+    }
+
+    @Override
+    public List<Person> findDirectorsByNameLike(String name) {
+        return personRepository.findAllByPersonTypeAndNameLike(PersonType.D, name);
+    }
+
+    @Override
+    public List<Person> findDirectorsBySurnameLike(String surname) {
+        return personRepository.findAllByPersonTypeAndSurnameLike(PersonType.D, surname);
     }
 }

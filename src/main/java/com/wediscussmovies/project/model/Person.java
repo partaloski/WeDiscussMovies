@@ -4,10 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Comparator;
 import java.util.List;
 
 @Data
-@Entity(name="persons")
+@Entity
+@Table(name="persons")
 public class Person {
     @Id
     @GeneratedValue
@@ -33,6 +35,20 @@ public class Person {
 
     @ManyToMany
     private List<Movie> acts_in;
+
+    public Person(String name, String surname, PersonType personType, Date date_of_birth, String image_url, String description) {
+        this.name = name;
+        this.surname = surname;
+        this.personType = personType;
+        this.date_of_birth = date_of_birth;
+        this.image_url = image_url;
+        this.description = description;
+    }
+
+    public Person() {
+    }
+
+    public static Comparator<Person> personComparatorByNameSurname = Comparator.comparing(Person::getName).thenComparing(Person::getSurname);
 }
 
 

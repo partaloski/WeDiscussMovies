@@ -12,5 +12,7 @@ import java.util.Optional;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Integer> {
     public List<Person> findAllByPersonType(PersonType type);
+    public List<Person> findAllByPersonTypeAndNameLike(PersonType type, String name);
+    public List<Person> findAllByPersonTypeAndSurnameLike(PersonType type, String surname);
     public Optional<Person> findPersonByPerson_idAndPersonType(Integer id, PersonType type);
 }

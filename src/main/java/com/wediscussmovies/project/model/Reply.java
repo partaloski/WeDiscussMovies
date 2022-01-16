@@ -4,9 +4,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Optional;
 
 @Data
-@Entity(name="replies")
+@Entity
+@Table(name="replies")
 public class Reply {
     @Id
     @GeneratedValue
@@ -26,6 +28,13 @@ public class Reply {
 
     @Column(name= "text", length = 1000, nullable = false)
     private String text;
+
+    public Reply(Discussion discussion, User user, Date date, String text) {
+        this.discussion = discussion;
+        this.user = user;
+        this.date = date;
+        this.text = text;
+    }
 }
 
 

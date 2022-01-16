@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Entity(name="users")
+@Entity
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue
@@ -35,6 +36,16 @@ public class User {
     @ManyToMany(mappedBy = "user_genres")
     private List<Genre> likes_genres;
 
+    public User(String username, String name, String surname, String email, String password) {
+        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User() {
+    }
 }
 
 

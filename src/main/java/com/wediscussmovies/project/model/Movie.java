@@ -7,7 +7,8 @@ import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
 @Data
-@Entity(name="movies")
+@Entity
+@Table (name="movies")
 public class Movie {
     @Id
     @GeneratedValue
@@ -59,6 +60,9 @@ public class Movie {
     }
 
     public static Comparator<Movie> comparatorTitle = Comparator.comparing(Movie::getTitle);
+
+    public Movie() {
+    }
 
     public Movie(String title, String description, String image_url, Date airing_date, float imdb_rating, Person director, List<Person> actors, List<Genre> genres) {
         Title = title;
