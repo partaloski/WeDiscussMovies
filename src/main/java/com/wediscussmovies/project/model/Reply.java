@@ -1,8 +1,11 @@
 package com.wediscussmovies.project.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 
+@Data
 @Entity(name="replies")
 public class Reply {
     @Id

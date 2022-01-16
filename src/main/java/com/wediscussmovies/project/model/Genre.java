@@ -1,10 +1,13 @@
 package com.wediscussmovies.project.model;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Data
 @Entity(name="genres")
 public class Genre {
     @Id
@@ -14,6 +17,13 @@ public class Genre {
 
     @Column(name="genre_type", length = 100, nullable = false, unique = true)
     private String genre_type;
+
+    public Genre(String genreName) {
+        this.genre_type = genreName;
+    }
+
+    public Genre() {
+    }
 }
 
 /*

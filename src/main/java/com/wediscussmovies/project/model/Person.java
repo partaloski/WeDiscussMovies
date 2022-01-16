@@ -1,9 +1,12 @@
 package com.wediscussmovies.project.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
+@Data
 @Entity(name="persons")
 public class Person {
     @Id

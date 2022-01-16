@@ -6,6 +6,7 @@ import com.wediscussmovies.project.service.MovieService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -21,7 +22,24 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public Optional<Movie> findById(Integer id) {
+        return movieRepository.findById(id);
+    }
+
+    @Override
+    public Movie save(Movie movie) {
+        return movieRepository.save(movie);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        movieRepository.deleteById(id);
+    }
+
+    @Override
     public List<Movie> searchByTitle(String title) {
         return movieRepository.findAllByTitleLike("%"+title+"%");
     }
 }
+
+
