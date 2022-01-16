@@ -3,43 +3,112 @@ package com.wediscussmovies.project.model;
 import javax.persistence.*;
 import java.sql.Date;
 
-@Entity(name="replies")
+@Entity
+@Table(name = "replies", schema = "project", catalog = "db_202122z_va_prj_wediscussmovies")
+@IdClass(RepliesEntityPK.class)
 public class Reply {
     @Id
-    @GeneratedValue
+    @Column(name = "discussion_id",insertable = false, updatable = false)
+    private int discussionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Column(name = "reply_id")
-    private int reply_id;
-
-    @ManyToOne
-    @Column(name = "discussion_id")
-    private Discussion discussion;
-
-    @ManyToOne
-    @Column(name = "user_id")
-    private User user;
-
-    @Column(name = "date", nullable = false)
-    private Date date;
-
-    @Column(name= "text", length = 1000, nullable = false)
+    private int replyId;
+    @Basic
+    @Column(name = "text")
     private String text;
+    @Basic
+    @Column(name = "date")
+    private Date date;
+    @Basic
+    @Column(name = "user_id")
+    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "discussion_id", referencedColumnName = "discussion_id", nullable = false,insertable = false, updatable = false)
+    private Discussion discussionsByDiscussionId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false,insertable = false, updatable = false)
+    private User usersByUserId;
+
+    public int getDiscussionId() {
+        return discussionId;
+    }
+
+    public void setDiscussionId(int discussionId) {
+        this.discussionId = discussionId;
+    }
+
+    public int getReplyId() {
+        return replyId;
+    }
+
+    public void setReplyId(int replyId) {
+        this.replyId = replyId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Reply that = (Reply) o;
+
+        if (discussionId != that.discussionId) return false;
+        if (replyId != that.replyId) return false;
+        if (userId != that.userId) return false;
+        if (text != null ? !text.equals(that.text) : that.text != null) return false;
+        if (date != null ? !date.equals(that.date) : that.date != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = discussionId;
+        result = 31 * result + replyId;
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + userId;
+        return result;
+    }
+
+    public Discussion getDiscussionsByDiscussionId() {
+        return discussionsByDiscussionId;
+    }
+
+    public void setDiscussionsByDiscussionId(Discussion discussionsByDiscussionId) {
+        this.discussionsByDiscussionId = discussionsByDiscussionId;
+    }
+
+    public User getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(User usersByUserId) {
+        this.usersByUserId = usersByUserId;
+    }
 }
-
-
-/*
-
-    create table replies(
-        discussion_id integer,
-        reply_id serial,
-        text varchar(1000) not null,
-        date date not null,
-        user_id integer not null,
-        constraint pk_replies primary key(discussion_id,reply_id),
-        constraint fk_user_create_reply foreign key (user_id) references users(user_id)
-        on delete cascade on update cascade,
-        constraint fk_reply_discussion foreign key (discussion_id) references discussions(discussion_id)
-        on delete cascade on update cascade
-
-
-    );
- */
