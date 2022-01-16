@@ -1,9 +1,9 @@
 package com.wediscussmovies.project.web.controller;
 
+import com.wediscussmovies.project.exception.MovieIdNotFoundException;
 import com.wediscussmovies.project.model.Genre;
 import com.wediscussmovies.project.model.Movie;
 import com.wediscussmovies.project.model.Person;
-import com.wediscussmovies.project.model.exception.MovieIdNotFoundException;
 import com.wediscussmovies.project.service.GenreService;
 import com.wediscussmovies.project.service.MovieService;
 import com.wediscussmovies.project.service.PersonService;
@@ -58,10 +58,10 @@ public class MovieController {
 
 
     @PostMapping("/{id}/delete")
-    public String addMovie(@PathVariable int id){
+    public String addMovie(@PathVariable Long id){
         Optional<Movie> movie = movieService.findById(id);
         if(movie.isPresent()){
-            movieService.deleteById(movie.get().getMovie_id());
+            movieService.deleteById(movie.get().getId());
         }
         return "redirect:/movies";
     }
@@ -71,7 +71,7 @@ public class MovieController {
                                @RequestParam String description,
                                @RequestParam String image_url,
                                @RequestParam Date airing_date,
-                               @RequestParam Float rating,
+                               @RequestParam Double rating,
                                @RequestParam Integer director_id,
                                @RequestParam List<Integer> actors,
                                @RequestParam List<Integer> genres,
@@ -130,12 +130,12 @@ public class MovieController {
 
     @PostMapping("/edit/confirm")
     public String editMoviePost(
-                                @RequestParam Integer movie_id,
+                                @RequestParam Long movie_id,
                                 @RequestParam String title,
                                @RequestParam String description,
                                @RequestParam String image_url,
                                @RequestParam Date airing_date,
-                               @RequestParam Float rating,
+                               @RequestParam Double rating,
                                @RequestParam Integer director_id,
                                @RequestParam List<Integer> actors,
                                @RequestParam List<Integer> genres,
@@ -202,9 +202,9 @@ public class MovieController {
         movie.setGenres(genreList);
         movie.setTitle(title);
         movie.setDescription(description);
-        movie.setAiring_date(airing_date);
-        movie.setImage_url(image_url);
-        movie.setImdb_rating(rating);
+        movie.setAringDate(airing_date);
+        movie.setImageUrl(image_url);
+        movie.setImbdRating(rating);
 
         movieService.save(movie);
 
@@ -212,7 +212,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editMovie(@PathVariable Integer id, Model model){
+    public String editMovie(@PathVariable Long id, Model model){
         Movie movie = movieService.findById(id).orElseThrow(() -> new MovieIdNotFoundException(id));
         model.addAttribute("directors", personService.findAllDirectors());
         model.addAttribute("actors", personService.findAllActors());

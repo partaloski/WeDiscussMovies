@@ -18,7 +18,7 @@ public class ReplyController {
     }
 
     @GetMapping("/edit/{id}")
-    public String getReplyEdit(@PathVariable Integer id, Model model){
+    public String getReplyEdit(@PathVariable Long id, Model model){
         Optional<Reply> reply = replyService.findById(id);
         if(reply.isEmpty())
             return "redirect:/movies";
@@ -28,7 +28,7 @@ public class ReplyController {
     }
 
     @PostMapping("/edit/confirm/{id}")
-    public String getReplyEdit(@PathVariable Integer id, @RequestParam String text){
+    public String getReplyEdit(@PathVariable Long id, @RequestParam String text){
         Optional<Reply> replyOp = replyService.findById(id);
         if(replyOp.isEmpty())
             return "redirect:/discussions";
@@ -36,6 +36,6 @@ public class ReplyController {
         replyService.delete(reply);
         reply.setText(text);
         replyService.save(reply);
-        return "redirect:/discussions/"+reply.getDiscussion().getDiscussion_id();
+        return "redirect:/discussions/"+reply.getDiscussion().getId();
     }
 }

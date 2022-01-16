@@ -23,7 +23,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public List<Genre> findAllByType(String genre) {
-        return genreRepository.findAllByGenre_typeLike(genre);
+        return genreRepository.findAllByGenre(genre);
     }
 
     @Override

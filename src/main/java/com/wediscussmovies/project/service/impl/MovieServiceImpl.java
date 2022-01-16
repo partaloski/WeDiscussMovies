@@ -22,8 +22,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Optional<Movie> findById(Integer id) {
-        return movieRepository.findById(id);
+    public Optional<Movie> findById(Long id) {
+        return movieRepository.findById(1);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void deleteById(int id) {
-        movieRepository.deleteById(id);
+    public void deleteById(Long id) {
+        movieRepository.deleteById(0);
     }
 
     @Override

@@ -1,34 +1,29 @@
 package com.wediscussmovies.project.model;
 
-import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
+import lombok.Data;
 
-@Data
+
 @Entity
-@Table(name="genres")
+@Table(name = "genres", schema = "project", catalog = "db_202122z_va_prj_wediscussmovies")
+@Data
 public class Genre {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
-    @Column(name="genre_id", nullable = false, unique = true)
-    private int genre_id;
+    @Column(name = "genre_id")
+    private Long id;
 
-    @Column(name="genre_type", length = 100, nullable = false, unique = true)
-    private String genre_type;
+    @Column(name = "genre_type")
+    private String genre;
 
-    public Genre(String genreName) {
-        this.genre_type = genreName;
+    public Genre(String genre) {
+        this.genre = genre;
     }
 
     public Genre() {
     }
+
 }
-
-/*
-
-create table genres(
-    genre_id serial primary key,
-    genre_type varchar(100) not null unique
-);
-
- */

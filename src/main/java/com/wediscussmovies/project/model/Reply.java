@@ -6,52 +6,46 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Optional;
 
-@Data
 @Entity
-@Table(name="replies")
+@Table(name = "replies", schema = "project", catalog = "db_202122z_va_prj_wediscussmovies")
+@IdClass(RepliesEntityPK.class)
+@Data
 public class Reply {
     @Id
-    @GeneratedValue
+    @Column(name = "discussion_id")
+    private Long discussionId;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Column(name = "reply_id")
-    private int reply_id;
+    private Long replyId;
+
+    private String text;
+
+    private Date date;
 
     @ManyToOne
-    @Column(name = "discussion_id")
+    @JoinColumn(name = "discussion_id", referencedColumnName = "discussion_id", nullable = false,insertable = false, updatable = false)
     private Discussion discussion;
 
     @ManyToOne
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "date", nullable = false)
-    private Date date;
 
-    @Column(name= "text", length = 1000, nullable = false)
-    private String text;
+
 
     public Reply(Discussion discussion, User user, Date date, String text) {
         this.discussion = discussion;
         this.user = user;
         this.date = date;
         this.text = text;
+
     }
+
+    public Reply() {
+
+    }
+
+
 }
-
-
-/*
-
-    create table replies(
-        discussion_id integer,
-        reply_id serial,
-        text varchar(1000) not null,
-        date date not null,
-        user_id integer not null,
-        constraint pk_replies primary key(discussion_id,reply_id),
-        constraint fk_user_create_reply foreign key (user_id) references users(user_id)
-        on delete cascade on update cascade,
-        constraint fk_reply_discussion foreign key (discussion_id) references discussions(discussion_id)
-        on delete cascade on update cascade
-
-
-    );
- */

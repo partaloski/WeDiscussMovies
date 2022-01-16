@@ -1,6 +1,7 @@
 package com.wediscussmovies.project.web.controller;
 
 import com.wediscussmovies.project.model.*;
+import com.wediscussmovies.project.model.enumerations.DiscussionType;
 import com.wediscussmovies.project.service.DiscussionService;
 import com.wediscussmovies.project.service.MovieService;
 import com.wediscussmovies.project.service.PersonService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,12 +102,12 @@ public class DiscussionsController {
         if(user == null){
             return "redirect:/login";
         }
-        Integer movie_id = (Integer) request.getSession().getAttribute("movieId");
+        Long movie_id = (Long) request.getSession().getAttribute("movieId");
         request.getSession().setAttribute("movieId", null);
         Optional<Movie> movieOp = movieService.findById(movie_id);
         if(movieOp.isEmpty())
             return "redirect:/movies";
-        Discussion discussion = new Discussion(title, text, user, movieOp.get(), Date.valueOf(LocalDate.now()));
+        Discussion discussion = new Discussion(DiscussionType.M,text, title, Date.valueOf(LocalDate.now()),user,movieOp.get(),null,new ArrayList<>());
         discussionService.save(discussion);
         return "redirect:/discussions";
     }
@@ -134,7 +136,7 @@ public class DiscussionsController {
         request.getSession().setAttribute("personId", null);
         if(personOp.isEmpty())
             return "redirect:/discussions";
-        Discussion discussion = new Discussion(title, text, user, personOp.get(), Date.valueOf(LocalDate.now()));
+        Discussion discussion = new Discussion(DiscussionType.P,title, text,Date.valueOf(LocalDate.now()),user,null,personOp.get(),new ArrayList<>());
         discussionService.save(discussion);
         return "redirect:/discussions";
     }

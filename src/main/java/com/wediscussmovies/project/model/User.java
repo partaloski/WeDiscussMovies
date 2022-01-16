@@ -1,40 +1,32 @@
 package com.wediscussmovies.project.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
-@Data
 @Entity
-@Table(name="users")
+@Table(name = "users", schema = "project", catalog = "db_202122z_va_prj_wediscussmovies")
 public class User {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
-    @Column(name="user_id", nullable = false)
-    private int user_id;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(name="username", length=50, nullable=false, unique=false)
     private String username;
 
-    @Column(name="name", length=50, nullable=false, unique=false)
     private String name;
 
-    @Column(name="surname", length=50, nullable=false, unique=false)
     private String surname;
 
-    @Column(name="email", length=50, nullable=false, unique=false)
     private String email;
 
-    @Column(name="password", length=100, nullable=false, unique=true)
     private String password;
 
-    //TODO("RATES_MOVIE")
-    @ManyToMany(mappedBy = "movie_likes")
-    private List<Movie> likes_movie;
+    @ManyToMany
+    private List<Movie> movies;
 
-    @ManyToMany(mappedBy = "user_genres")
-    private List<Genre> likes_genres;
+
+
 
     public User(String username, String name, String surname, String email, String password) {
         this.username = username;
@@ -47,16 +39,3 @@ public class User {
     public User() {
     }
 }
-
-
-/*
-    create table users(
-      user_id serial primary key,
-      username varchar(50) not null unique,
-      name varchar(50) not null,
-      surname varchar(50) not null,
-      email varchar(100) not null unique,
-      password varchar(30) not null,
-      constraint ck_password check(length(password) >= 9)
-    );
- */

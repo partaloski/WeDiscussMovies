@@ -1,7 +1,7 @@
 package com.wediscussmovies.project.web.controller;
 
 import com.wediscussmovies.project.model.Person;
-import com.wediscussmovies.project.model.PersonType;
+import com.wediscussmovies.project.model.enumerations.PersonType;
 import com.wediscussmovies.project.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +37,7 @@ public class PersonsController {
                 for(Person p: actorsBySurname){
                     boolean add = true;
                     for(Person a: actorsByName){
-                        if(a.getPerson_id() == p.getPerson_id()){
+                        if(a.getPersonId() == p.getPersonId()){
                             add=false;
                             break;
                         }
@@ -49,7 +49,7 @@ public class PersonsController {
             }
             actors = actorsByName;
         }
-        actors.sort(Person.personComparatorByNameSurname);
+       // actors.sort(Person.personComparatorByNameSurname);
         model.addAttribute("actors", actors);
         model.addAttribute("contentTemplate", "actorsList");
         return "template";
@@ -70,7 +70,7 @@ public class PersonsController {
                 for(Person p: directorsBySurname){
                     boolean add = true;
                     for(Person a: directorsByName){
-                        if(a.getPerson_id() == p.getPerson_id()){
+                        if(a.getPersonId() == p.getPersonId()){
                             add=false;
                             break;
                         }
@@ -82,7 +82,7 @@ public class PersonsController {
             }
             directors = directorsByName;
         }
-        directors.sort(Person.personComparatorByNameSurname);
+     //   directors.sort(Person.personComparatorByNameSurname);
         model.addAttribute("directors", directors);
         model.addAttribute("contentTemplate", "directorsList");
         return "template";

@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface GenreRepository extends JpaRepository<Genre, Integer> {
-    public List<Genre> findAllByGenre_typeLike(String genre_type);
+    public List<Genre> findAllByGenre(String genre_type);
 }

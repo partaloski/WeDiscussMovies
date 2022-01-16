@@ -16,8 +16,8 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public Optional<Reply> findById(Integer id) {
-        return replyRepository.findById(id);
+    public Optional<Reply> findById(Long id) {
+        return replyRepository.findById(1);
     }
 
     @Override
