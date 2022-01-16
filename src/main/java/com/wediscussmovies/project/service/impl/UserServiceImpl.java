@@ -1,5 +1,6 @@
 package com.wediscussmovies.project.service.impl;
 
+import com.wediscussmovies.project.model.PasswordEncoder;
 import com.wediscussmovies.project.model.User;
 import com.wediscussmovies.project.model.exception.PasswordsDontMatchException;
 import com.wediscussmovies.project.model.exception.UserWithEmailAlreadyExists;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 @Service
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
             request.getSession().setAttribute("error", "Not all of the fields had a value in them, check again.");
             return Optional.empty();
         }
-            if(userRepository.findByUsername(username).isPresent()){
+        if(userRepository.findByUsername(username).isPresent()){
             request.getSession().setAttribute("error", new UserWithUsernameAlreadyExists(username).getMessage());
             return Optional.empty();
         }

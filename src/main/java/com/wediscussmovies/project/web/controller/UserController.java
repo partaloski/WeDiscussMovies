@@ -1,5 +1,6 @@
 package com.wediscussmovies.project.web.controller;
 
+import com.wediscussmovies.project.model.PasswordEncoder;
 import com.wediscussmovies.project.model.User;
 import com.wediscussmovies.project.model.exception.InvalidUserCredentialsException;
 import com.wediscussmovies.project.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 @Controller
@@ -23,15 +25,26 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(){
-       return "login";
+    public String getLoginPage(Model model){
+        return "login";
     }
 
     @PostMapping("/login/confirm")
-    public String confirmLogin(HttpServletRequest request, Model model){
+    public String confirmLogin(HttpServletRequest request, Model model,
+                               @RequestParam String username,
+                               @RequestParam String password){
         Optional<User> user;
         try{
-            user = this.userService.login(request.getParameter("username"), request.getParameter("password"));
+            password = PasswordEncoder.getEncodedPasswordString(password);
+        }
+        catch (NoSuchAlgorithmException ex){
+            model.addAttribute("hasError", true);
+            model.addAttribute("error", ex.getMessage());
+            return "login";
+        }
+
+        try{
+            user = this.userService.login(username, password);
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("loggedIn",true);
             return "redirect:/movies";
@@ -57,14 +70,25 @@ public class UserController {
                                   @RequestParam String name,
                                   @RequestParam String surname){
         Optional<User> user;
+
+        try{
+            password = PasswordEncoder.getEncodedPasswordString(password);
+            confirmPassword = PasswordEncoder.getEncodedPasswordString(confirmPassword);
+        }
+        catch (NoSuchAlgorithmException ex){
+            request.getSession().setAttribute("error", "Contact the administrators!");
+            request.getSession().setAttribute("hasError", "true");
+            return "redirect:/movies";
+        }
+
         user = this.userService.register(request, email, password, confirmPassword, username, name, surname);
         if(user.isEmpty()){
             request.setAttribute("hasError", "true");
         }else{
-            request.setAttribute("hasError", "false");
+            request.getSession().setAttribute("hasError", "false");
+            request.getSession().setAttribute("user", user.get());
+            request.getSession().setAttribute("loggedIn",true);
         }
-        request.getSession().setAttribute("user", user.get());
-        request.getSession().setAttribute("loggedIn",true);
         return "redirect:/movies";
     }
 
