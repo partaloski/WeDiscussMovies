@@ -1,7 +1,5 @@
 package com.wediscussmovies.project.service;
 
-import com.wediscussmovies.project.model.Reply;
-
 import java.util.Optional;
 
 public interface ReplyService {

@@ -1,6 +1,5 @@
 package com.wediscussmovies.project.web.controller;
 
-import com.wediscussmovies.project.model.Reply;
 import com.wediscussmovies.project.service.ReplyService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
