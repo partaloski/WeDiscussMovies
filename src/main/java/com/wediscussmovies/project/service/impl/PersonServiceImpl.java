@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.service.impl;
 
-import com.wediscussmovies.project.model.Person;
+import com.wediscussmovies.project.model.*;
 import com.wediscussmovies.project.model.enumerations.PersonType;
 import com.wediscussmovies.project.repository.PersonRepository;
 import com.wediscussmovies.project.service.PersonService;
@@ -20,12 +20,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> findAllDirectors() {
-        return personRepository.findAllByPersonType(PersonType.D);
+        return personRepository.findAllByType('D');
     }
 
     @Override
     public Optional<Person> findActorById(Integer id) {
-        return personRepository.findPersonByPerson_idAndPersonType(id, PersonType.A);
+        return personRepository.findPersonByPersonIdAndType(id, 'A');
     }
 
     @Override
@@ -35,12 +35,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Optional<Person> findDirectorById(Integer id) {
-        return personRepository.findPersonByPerson_idAndPersonType(id, PersonType.D);
+        return personRepository.findPersonByPersonIdAndType(id, 'D');
     }
 
     @Override
     public List<Person> findAllActors() {
-        return personRepository.findAllByPersonType(PersonType.A);
+        return personRepository.findAllByType('A');
     }
 
     @Override
@@ -53,21 +53,21 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> findActorsByNameLike(String name) {
-        return personRepository.findAllByPersonTypeAndNameLike(PersonType.A, name);
+        return personRepository.findAllByTypeAndNameLike('A', name);
     }
 
     @Override
     public List<Person> findActorsBySurnameLike(String surname) {
-        return personRepository.findAllByPersonTypeAndSurnameLike(PersonType.A, surname);
+        return personRepository.findAllByTypeAndSurnameLike('A', surname);
     }
 
     @Override
     public List<Person> findDirectorsByNameLike(String name) {
-        return personRepository.findAllByPersonTypeAndNameLike(PersonType.D, name);
+        return personRepository.findAllByTypeAndNameLike('D', name);
     }
 
     @Override
     public List<Person> findDirectorsBySurnameLike(String surname) {
-        return personRepository.findAllByPersonTypeAndSurnameLike(PersonType.D, surname);
+        return personRepository.findAllByTypeAndSurnameLike('D', surname);
     }
 }

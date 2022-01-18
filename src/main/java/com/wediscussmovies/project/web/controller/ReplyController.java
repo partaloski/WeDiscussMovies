@@ -1,7 +1,8 @@
 package com.wediscussmovies.project.web.controller;
 
-import com.wediscussmovies.project.model.Reply;
+import com.wediscussmovies.project.model.*;
 import com.wediscussmovies.project.service.ReplyService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
+@Controller
 public class ReplyController {
     private final ReplyService replyService;
 
@@ -36,6 +38,6 @@ public class ReplyController {
         replyService.delete(reply);
         reply.setText(text);
         replyService.save(reply);
-        return "redirect:/discussions/"+reply.getDiscussion().getId();
+        return "redirect:/discussions/"+reply.getDiscussionId();
     }
 }

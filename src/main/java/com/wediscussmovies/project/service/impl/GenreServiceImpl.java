@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.service.impl;
 
-import com.wediscussmovies.project.model.Genre;
+import com.wediscussmovies.project.model.*;
 import com.wediscussmovies.project.repository.GenreRepository;
 import com.wediscussmovies.project.service.GenreService;
 import org.springframework.stereotype.Service;
@@ -23,12 +23,12 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public List<Genre> findAllByType(String genre) {
-        return genreRepository.findAllByGenre(genre);
+        return genreRepository.findAllByGenreType(genre);
     }
 
     @Override
     public Genre save(String genreName) {
-        Genre genre = new Genre(genreName);
+       Genre genre = new Genre(genreName);
         return genreRepository.save(genre);
     }
 

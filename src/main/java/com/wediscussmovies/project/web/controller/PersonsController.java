@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.web.controller;
 
-import com.wediscussmovies.project.model.Person;
+import com.wediscussmovies.project.model.*;
 import com.wediscussmovies.project.model.enumerations.PersonType;
 import com.wediscussmovies.project.service.PersonService;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,6 @@ import java.sql.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping(".")
 public class PersonsController {
     private final PersonService personSerivce;
 
@@ -100,14 +99,14 @@ public class PersonsController {
     public String confirmPersonsAdd(
             @RequestParam String name,
             @RequestParam String surname,
-            @RequestParam PersonType type,
+            @RequestParam Character type,
             @RequestParam Date date_of_birth,
             @RequestParam String image_url,
             @RequestParam String description){
         Person person = new Person(name, surname, type, date_of_birth, image_url, description);
         if(personSerivce.save(person)){
             String toWhere = "actors";
-            if(type == PersonType.D)
+            //if(type == PersonType.D)
                 toWhere = "directors";
             return "redirect:/"+toWhere;
         }

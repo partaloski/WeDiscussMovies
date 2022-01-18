@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.service;
 
-import com.wediscussmovies.project.model.User;
+import com.wediscussmovies.project.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
