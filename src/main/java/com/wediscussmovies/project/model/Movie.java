@@ -4,91 +4,95 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-@Data
+import java.util.Objects;
+
+
 @Entity
-@Table (name="movies")
+@Table(name = "movies", schema = "project", catalog = "db_202122z_va_prj_wediscussmovies")
+@Data
 public class Movie {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
-    @Column(name="movie_id", nullable = false)
-    private int movie_id;
+    @Column(name = "movie_id")
+    private Long id;
 
-    @Column(name="title", length = 150, unique = true, nullable = false)
-    private String Title;
+    private String title;
 
-    @Column(name="description", nullable = false, length = 1000)
     private String description;
 
-    @Column(name="image_url", length = 300, nullable = false)
-    private String image_url;
+    @Column(name = "image_url")
+    private String imageUrl;
 
-    @Column(name="airing_date")
-    private Date airing_date;
 
-    @Column(name="imdb_rating")
-    private float imdb_rating;
+    @Column(name = "airing_date")
+    private Date aringDate;
 
-    @Column(name="director_id")
-    @ManyToOne
-    private Person director;
+    @Column(name = "imdb_rating")
+    private Double imbdRating;
 
-    @ManyToMany(mappedBy = "movie_actors")
-    private List<Person> actors;
-
-    @ManyToMany(mappedBy = "movie_genres")
+    @ManyToMany
     private List<Genre> genres;
 
+    @ManyToMany
+    private List<Person> likes;
+
+    @ManyToMany
+    private List<Person> actors;
+
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "director_id")
+    private Person director;
+
+
+
+
+
+
     public boolean isFromGenre(Genre genre){
-        for(Genre g: genres){
-            if(g.getGenre_id() == genre.getGenre_id())
-                return true;
-        }
-        return false;
+
+     return    genres
+                .stream()
+                .anyMatch(g -> Objects.equals(g.getId(), genre.getId()));
+
     }
     public boolean hasActor(Person p){
-        for(Person person: actors){
-            if(person.getPerson_id() == p.getPerson_id())
-                return true;
-        }
-        return false;
+        return
+                actors
+                        .stream()
+                        .anyMatch(a -> Objects.equals(a.getPersonId(), p.getPersonId()));
+
+
     }
 
     public boolean isDirectedBy(Person p){
-        return director.getPerson_id() == p.getPerson_id();
+        return Objects.equals(director.getPersonId(), p.getPersonId());
     }
 
     public static Comparator<Movie> comparatorTitle = Comparator.comparing(Movie::getTitle);
 
+
+    public Movie( String title, String description, String imageUrl, Date aringDate, Double imbdRating,Person director, List<Person> actors, List<Genre> genres) {
+
+        this.title = title;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.aringDate = aringDate;
+        this.imbdRating = imbdRating;
+        this.genres = genres;
+        this.likes = likes;
+        this.actors = actors;
+        this.director = director;
+    }
+
     public Movie() {
     }
 
-    public Movie(String title, String description, String image_url, Date airing_date, float imdb_rating, Person director, List<Person> actors, List<Genre> genres) {
-        Title = title;
-        this.description = description;
-        this.image_url = image_url;
-        this.airing_date = airing_date;
-        this.imdb_rating = imdb_rating;
-        this.director = director;
-        this.actors = actors;
-        this.genres = genres;
-    }
+
 }
-
-
-/*
-
-    create table movies(
-        movie_id serial primary key,
-        title varchar(150) not null unique,
-        description varchar(1000) not null,
-        image_url varchar(300) not null,
-        airing_date date not null,
-        imdb_rating float,
-        director_id integer,
-        constraint fk_movie_director foreign key (director_id) references persons(person_id)
-        on delete cascade on update cascade,
-        constraint ck_person_is_director check( check_constraint_person(director_id) = 'D')
-    );
- */

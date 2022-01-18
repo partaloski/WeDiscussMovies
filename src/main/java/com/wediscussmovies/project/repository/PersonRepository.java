@@ -1,7 +1,7 @@
 package com.wediscussmovies.project.repository;
 
 import com.wediscussmovies.project.model.Person;
-import com.wediscussmovies.project.model.PersonType;
+import com.wediscussmovies.project.model.enumerations.PersonType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

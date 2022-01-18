@@ -1,7 +1,7 @@
 package com.wediscussmovies.project.service.impl;
 
 import com.wediscussmovies.project.model.Person;
-import com.wediscussmovies.project.model.PersonType;
+import com.wediscussmovies.project.model.enumerations.PersonType;
 import com.wediscussmovies.project.repository.PersonRepository;
 import com.wediscussmovies.project.service.PersonService;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
+
 
     public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;

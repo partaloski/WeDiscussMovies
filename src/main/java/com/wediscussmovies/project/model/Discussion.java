@@ -1,88 +1,66 @@
 package com.wediscussmovies.project.model;
 
+import com.wediscussmovies.project.model.enumerations.DiscussionType;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity
-@Table (name="discussions")
+@Table(name = "discussions", schema = "project", catalog = "db_202122z_va_prj_wediscussmovies")
 public class Discussion {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
-    private int discussion_id;
+    @Column(name = "discussion_id")
+    private Long id;
 
-    @ManyToOne
-    @Column(name = "movie_id")
-    private Movie movie;
+    @Enumerated
+    private DiscussionType type;
 
-    @ManyToOne()
-    @Column(name = "person_id")
-    private Person person;
-
-    @ManyToOne
-    @Column(name = "user_id")
-    private User user;
-
-    @Column(name = "text", length = 1000, nullable = false)
     private String text;
 
-    @Column(name = "title", length = 1000, nullable = false)
     private String title;
 
-    @Column(name = "date", nullable = false)
     private Date date;
 
-    @Column(name = "type", nullable = false)
-    private DiscussionType type;
-    @OneToMany
-    private List<Reply> replies;
+
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
+    private Movie movie;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "person_id")
+    private Person person;
+
+
+
+
+
+
+    public Discussion(DiscussionType type, String text, String title, Date date, User user, Movie movie, Person person, List<Reply> replies) {
+        this.type = type;
+        this.text = text;
+        this.title = title;
+        this.date = date;
+        this.user = user;
+        this.movie = movie;
+        this.person = person;
+    }
 
     public Discussion() {
     }
 
-    public Discussion(String title, String text, User user, Movie movie, Date valueOf) {
-        this.title = title;
-        this.text = text;
-        this.user = user;
-        this.date = valueOf;
-        this.movie = movie;
-        this.type = DiscussionType.M;
-    }
-
-    public Discussion(String title, String text, User user, Person person, Date valueOf) {
-        this.title = title;
-        this.text = text;
-        this.user = user;
-        this.date = valueOf;
-        this.person = person;
-        this.type = DiscussionType.P;
-    }
-
 
 }
-
-
-/*
-    create table discussions(
-        discussion_id serial primary key,
-        type char(1) not null,
-        text varchar(1000) not null,
-        title varchar(250) not null,
-        date date not null,
-        user_id integer not null,
-        movie_id integer,
-        person_id integer,
-        constraint fk_user_created foreign key (user_id) references users(user_id)
-        on delete cascade on update cascade,
-        constraint ck_type_discussion check( (type = 'M' and movie_id notnull and person_id isnull)
-        or (type='P' and person_id  notnull and movie_id isnull)),
-        constraint fk_discussion_movie foreign key (movie_id) references movies(movie_id)
-        on delete cascade on update cascade,
-        constraint fk_discussion_person foreign key (person_id) references persons(person_id)
-        on delete cascade on update cascade
-    );
-
- */

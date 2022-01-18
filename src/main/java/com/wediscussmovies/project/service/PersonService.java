@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PersonService {
-    public List<Person> findAllDirectors();
-    public List<Person> findAllActors();
+     List<Person> findAllDirectors();
+     List<Person> findAllActors();
     Optional<Person> findById(Integer person_id);
     Optional<Person> findActorById(Integer id);
     Optional<Person> findDirectorById(Integer id);
