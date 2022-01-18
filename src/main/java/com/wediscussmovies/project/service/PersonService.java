@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.service;
 
-import com.wediscussmovies.project.model.Person;
+import com.wediscussmovies.project.model.*;
 
 import java.util.List;
 import java.util.Optional;

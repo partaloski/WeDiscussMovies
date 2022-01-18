@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.service.impl;
 
-import com.wediscussmovies.project.model.Movie;
+import com.wediscussmovies.project.model.*;
 import com.wediscussmovies.project.repository.MovieRepository;
 import com.wediscussmovies.project.service.MovieService;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Optional<Movie> findById(Long id) {
+    public Optional<Movie> findById(Integer id) {
         return movieRepository.findById(1);
     }
 
@@ -32,8 +32,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        movieRepository.deleteById(0);
+    public void deleteById(Integer id) {
+        movieRepository.deleteById(id);
     }
 
     @Override
