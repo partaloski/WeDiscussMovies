@@ -1,6 +1,5 @@
 package com.wediscussmovies.project.web.controller;
 
-import com.wediscussmovies.project.exception.MovieIdNotFoundException;
 import com.wediscussmovies.project.model.Genre;
 import com.wediscussmovies.project.model.Movie;
 import com.wediscussmovies.project.model.Person;
