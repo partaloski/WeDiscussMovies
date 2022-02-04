@@ -1,17 +1,14 @@
 package com.wediscussmovies.project.service.impl;
 
-import com.wediscussmovies.project.model.PasswordEncoder;
-import com.wediscussmovies.project.model.User;
+import com.wediscussmovies.project.model.*;
 import com.wediscussmovies.project.model.exception.PasswordsDontMatchException;
 import com.wediscussmovies.project.model.exception.UserWithEmailAlreadyExists;
 import com.wediscussmovies.project.model.exception.UserWithUsernameAlreadyExists;
 import com.wediscussmovies.project.repository.UserRepository;
 import com.wediscussmovies.project.service.UserService;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 @Service

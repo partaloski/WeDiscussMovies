@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.service;
 
-import com.wediscussmovies.project.model.Genre;
+import com.wediscussmovies.project.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

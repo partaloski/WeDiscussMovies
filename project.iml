@@ -7,6 +7,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
+          <factory-entry name="noname-a.xml@0" value="14a5fbd7-f501-41df-a0af-e3b168b536f7" />
           <factory-entry name="project" value="14a5fbd7-f501-41df-a0af-e3b168b536f7" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -51,12 +52,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.14" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.14" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.14" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.6.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.14" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.14" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.14" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:2.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf-spring5:3.0.14.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf:3.0.14.RELEASE" level="project" />
@@ -77,6 +72,9 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.56" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.14" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.14" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.14" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.14" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.14" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.32" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.3.1" level="project" />
@@ -113,8 +111,9 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.3.14" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.8.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:5.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.6.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-core:5.6.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-crypto:5.6.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-web:5.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.7" level="project" />
@@ -137,5 +136,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:2.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.6.2" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.200" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch:0.1.55" level="project" />
   </component>
 </module>

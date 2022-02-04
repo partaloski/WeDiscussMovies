@@ -1,7 +1,7 @@
 package com.wediscussmovies.project.web.controller;
 
 import com.wediscussmovies.project.model.*;
-import com.wediscussmovies.project.model.enumerations.DiscussionType;
+
 import com.wediscussmovies.project.service.DiscussionService;
 import com.wediscussmovies.project.service.MovieService;
 import com.wediscussmovies.project.service.PersonService;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,8 +78,8 @@ public class DiscussionsController {
         Date date = Date.valueOf(LocalDate.now());
         if(discussion.isEmpty())
             return "redirect:/discussions";
-        Reply reply = new Reply(discussion.get(), user, date, text);
-        replyService.save(reply);
+        //Reply reply = new Reply(discussion.get(), user, date, text);
+       // replyService.save(reply);
         return "redirect:/discussions/"+id;
     }
 
@@ -102,13 +101,13 @@ public class DiscussionsController {
         if(user == null){
             return "redirect:/login";
         }
-        Long movie_id = (Long) request.getSession().getAttribute("movieId");
+        Integer movie_id = (Integer) request.getSession().getAttribute("movieId");
         request.getSession().setAttribute("movieId", null);
         Optional<Movie> movieOp = movieService.findById(movie_id);
         if(movieOp.isEmpty())
             return "redirect:/movies";
-        Discussion discussion = new Discussion(DiscussionType.M,text, title, Date.valueOf(LocalDate.now()),user,movieOp.get(),null,new ArrayList<>());
-        discussionService.save(discussion);
+      //  Discussion discussion = new Discussion('M',text, title, Date.valueOf(LocalDate.now()),user,movieOp.get(),null);
+       // discussionService.save(discussion);
         return "redirect:/discussions";
     }
 
@@ -136,8 +135,9 @@ public class DiscussionsController {
         request.getSession().setAttribute("personId", null);
         if(personOp.isEmpty())
             return "redirect:/discussions";
-        Discussion discussion = new Discussion(DiscussionType.P,title, text,Date.valueOf(LocalDate.now()),user,null,personOp.get(),new ArrayList<>());
-        discussionService.save(discussion);
+
+      //  Discussion discussion = new Discussion('P',title, text,Date.valueOf(LocalDate.now()),user,null,personOp.get());
+      //  discussionService.save(discussion);
         return "redirect:/discussions";
     }
 

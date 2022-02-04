@@ -1,6 +1,6 @@
 package com.wediscussmovies.project.service.impl;
 
-import com.wediscussmovies.project.model.Discussion;
+import com.wediscussmovies.project.model.*;
 import com.wediscussmovies.project.repository.DiscussionRepository;
 import com.wediscussmovies.project.service.DiscussionService;
 import org.springframework.stereotype.Service;
